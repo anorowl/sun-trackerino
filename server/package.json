@@ -4,11 +4,18 @@
   "description": "Sun trackerino server",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "test"
   },
   "author": "Matteo AUGER",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.8.7"
+  },
+  "devDependencies": {
+    "mocha": "^7.0.0",
+    "mongodb-memory-server": "^6.2.1",
+    "nyc": "^15.0.0"
   }
 }
