@@ -1,4 +1,4 @@
-![Build badge](https://api.travis-ci.org/matteoauger/sun-trackerino.svg?branch=master)
+[![Build Status](https://travis-ci.org/matteoauger/sun-trackerino.svg?branch=master)](https://travis-ci.org/matteoauger/sun-trackerino)
 
 # sun-trackerino 
 
