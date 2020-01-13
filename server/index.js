@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const express  = require('express');
+const EnergyBalance = require('./models/energy-balance');
 
 const app = express();
 
@@ -18,6 +19,17 @@ mongoose.connect(`mongodb://localhost:${DB_PORT}/${DB_NAME}`, {
 .catch(err => {
     console.error('Mongodb starting error:', err.stack);
     process.exit(1);
+});
+
+const db = mongoose.connection;
+db.once('open', function() {
+    const testSchema = new EnergyBalance();
+
+    testSchema.production = 100;
+    testSchema.consuption = 200;
+    testSchema.balance    = 200;
+    console.log(testSchema);    
+    testSchema.save().catch(console.err); 
 });
 
 // TODO remove this line
