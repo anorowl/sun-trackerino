@@ -22,15 +22,6 @@ mongoose.connect(`mongodb://localhost:${DB_PORT}/${DB_NAME}`, {
 });
 
 const db = mongoose.connection;
-db.once('open', function() {
-    const testSchema = new EnergyBalance();
-
-    testSchema.production = 100;
-    testSchema.consuption = 200;
-    testSchema.balance    = 200;
-    console.log(testSchema);    
-    testSchema.save().catch(console.err); 
-});
 
 // TODO remove this line
 // the different api routes should be managed by the controllers
