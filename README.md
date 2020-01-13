@@ -1,4 +1,6 @@
-# sun-trackerino
+![Build badge](https://api.travis-ci.org/matteoauger/sun-trackerino.svg?branch=master)
+
+# sun-trackerino 
 
 Solar tracker built with Arduino
 
