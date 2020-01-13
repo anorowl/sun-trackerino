@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/matteoauger/sun-trackerino.svg?branch=master)](https://travis-ci.org/matteoauger/sun-trackerino)
+[![Build Status](https://travis-ci.org/matteoauger/sun-trackerino.svg?branch=master)](https://travis-ci.org/matteoauger/sun-trackerino) [![Coverage Status](https://coveralls.io/repos/github/matteoauger/sun-trackerino/badge.svg?branch=master)](https://coveralls.io/github/matteoauger/sun-trackerino?branch=master)
 
 # sun-trackerino 
 
