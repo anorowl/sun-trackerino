@@ -6,4 +6,4 @@ env:
     - TEST_DIR=server
 
 script: cd $TEST_DIR && npm install && npm test
-after_script: cd $TEST_DIR && npm ci | coveralls
+after_script: npm ci | coveralls
