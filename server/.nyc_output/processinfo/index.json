@@ -1,0 +1,1 @@
+{"processes":{"6fd6e2c1-eb38-4018-94b3-233e0a6ea6f1":{"parent":null,"children":["c1199335-51a0-4e80-85fb-a844daeaf5b0"]},"c1199335-51a0-4e80-85fb-a844daeaf5b0":{"parent":"6fd6e2c1-eb38-4018-94b3-233e0a6ea6f1","children":[]}},"files":{"/home/matteo/Workspace/cours/sun-trackerino/server/models/energy-balance.js":["c1199335-51a0-4e80-85fb-a844daeaf5b0"]},"externalIds":{}}

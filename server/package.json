@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "mocha tests/*"
+    "test": "mocha tests/*",
+    "ci": "nyc npm test && nyc report --reporter=text-lcov"
   },
   "author": "Matteo AUGER",
   "license": "MIT",
@@ -14,6 +15,7 @@
     "mongoose": "^5.8.7"
   },
   "devDependencies": {
+    "coveralls": "^3.0.9",
     "mocha": "^7.0.0",
     "mongodb-memory-server": "^6.2.1",
     "nyc": "^15.0.0"
