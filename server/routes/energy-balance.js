@@ -19,6 +19,7 @@ router.get('/', wrap(async (req, res) => {
  */
 router.get('/dateinterval',
     ParamConstraint.requiredGetParams('begin_date', 'end_date'),
+    ParamConstraint.checkParamsDate('begin_date', 'end_date'),
     wrap(async (req, res) => {
         const beginDate = new Date(req.query.begin_date);
         const endDate   = new Date(req.query.end_date);
