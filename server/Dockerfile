@@ -1,4 +1,4 @@
-FROMM node
+FROM node
 
 WORKDIR /usr/src/sun-trackerino
 
