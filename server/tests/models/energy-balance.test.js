@@ -10,7 +10,6 @@ describe('Energy balance schema', () => {
             eb.production = null;
             
             const error = eb.validateSync();
-            console.log(eb);
             assert.equal(error.errors['production'].message, "The power production is mandatory");
             assert.equal(error.errors['production'].name,    "ValidatorError");
         });

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const express  = require('express');
-const EnergyBalance = require('./models/energy-balance');
+const EnergyBalanceRouter = require('./routes/energy-balance');
 
 const app = express();
 
@@ -23,8 +23,5 @@ mongoose.connect(`mongodb://localhost:${DB_PORT}/${DB_NAME}`, {
 
 const db = mongoose.connection;
 
-// TODO remove this line
-// the different api routes should be managed by the controllers
-app.get('/', (req, res) => res.send('Hello World'));
-
+app.use('/energy-balance', EnergyBalanceRouter);
 app.listen(APP_PORT, () => console.log(`Listening on port ${APP_PORT}`));
