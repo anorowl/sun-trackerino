@@ -3,13 +3,25 @@ const router          = express.Router();
 const EnergyBalance   = require('../models/energy-balance');
 const ParamConstraint = require('../middlewares/param-constraint');
 const wrap            = require('../middlewares/promise-wrapper');
+const DateUtils       = require('../utils/date-utils');
 
 /**
  * Gets all the energybalances of the day
  */
 router.get('/', wrap(async (req, res) => {
-    // getting the energy balances
-    const energyBalances = await EnergyBalance.find();
+    const today = new Date();
+
+    const dayBeginning = DateUtils.getDayBeginning(today);
+    const dayEnding    = DateUtils.getDayEnding(today);    
+ 
+    // getting the energy balances of the current day
+    const energyBalances = await EnergyBalance.find({
+        date: {
+            $gte: dayBeginning, // between day beginning and day ending
+            $lte: dayEnding
+        } 
+    });
+
     // sending the result
     res.json(energyBalances);
 }));
