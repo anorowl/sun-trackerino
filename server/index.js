@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const express  = require('express');
-const EnergyBalance = require('./models/energy-balance');
 const EnergyBalanceRouter = require('./routes/energy-balance');
 
 const app = express();
