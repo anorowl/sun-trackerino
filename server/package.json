@@ -1,0 +1,23 @@
+{
+  "name": "sun-trackerino-server",
+  "version": "1.0.0",
+  "description": "Sun trackerino server",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha tests/*",
+    "ci": "nyc npm test && nyc report --reporter=text-lcov"
+  },
+  "author": "Matteo AUGER",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.8.7"
+  },
+  "devDependencies": {
+    "coveralls": "^3.0.9",
+    "mocha": "^7.0.0",
+    "mongodb-memory-server": "^6.2.1",
+    "nyc": "^15.0.0"
+  }
+}
