@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const express  = require('express');
+const SerialPort = require('serialport');
+const ReadLine = SerialPort.parsers.Readline;
 const EnergyBalanceRouter = require('./routes/energy-balance');
 
 const app = express();
@@ -25,3 +27,9 @@ const db = mongoose.connection;
 
 app.use('/energy-balance', EnergyBalanceRouter);
 app.listen(APP_PORT, () => console.log(`Listening on port ${APP_PORT}`));
+
+const serial = new SerialPort('/dev/ttyACM0', { baudRate: 9600 }, (err) => {
+    console.error("CA CONNECTE PAS " + err.message)
+});
+const parser = serial.pipe(new ReadLine())
+parser.on("data", console.log)
