@@ -44,8 +44,8 @@ router.get('/dateinterval',
 
         const energyBalances = await EnergyBalance.find({
             date: { 
-                $gt: beginDate,
-                $lt: endDate
+                $gte: beginDate,
+                $lte: endDate
             }, 
         });
 
