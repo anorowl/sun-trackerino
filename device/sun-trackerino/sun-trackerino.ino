@@ -21,6 +21,11 @@ int br = 0; // Bottom Right
 int atl, atr, abr, abl = 0;
 // - - - - - - - - - - - -
 int RightValue, LeftValue, BottomValue = 0;
+
+// - - - - - - - - - - - -
+int GreenLED = 6;
+int OrangeLED = 5;
+int RedLED = 3;
 // - - - - - - - - - - - -
 int maxTL, maxTR, maxBL, maxBR = 0;
 int minH = 10;
@@ -31,8 +36,15 @@ bool initServo = false;
 bool etalonnage = false;
 int idx = 0;
 int d = 50;
+
+
 void setup() {
   Serial.begin(9600);
+//  Serial.begin(115200);
+  
+  pinMode(GreenLED, OUTPUT);
+  pinMode(OrangeLED, OUTPUT);
+  pinMode(RedLED, OUTPUT);
   
   ServoH.attach(servoPinH);
   ServoV.attach(servoPinV);
@@ -128,6 +140,32 @@ void loop() {
   int avg = (int) (tl + tr + br + bl) / 4;
   Serial.println("- - - - - - - - - - - - - - - - - - - - - - ");
   Serial.println((String)avg + "%");
+
+
+  int brightness = 0;
+  
+  analogWrite(GreenLED, 0);
+  analogWrite(OrangeLED, 0);
+  analogWrite(RedLED, 0);
+
+  int RedBright = 0;
+  int OrangeBright = 0;
+  int GreenBright = 0;
+  
+  RedBright = map(avg, 0, 25, 0, 255); 
+  OrangeBright = map(avg, 0, 60, 0, 255); 
+  GreenBright = map(avg, 0, 80, 0, 255); 
+
+  Serial.println("Low Light");
+  analogWrite(RedLED, RedBright);
+  analogWrite(OrangeLED, OrangeBright);
+  analogWrite(GreenLED, GreenBright);
+
+  analogWrite(RedLED, 100);
+  analogWrite(OrangeLED, 100);
+  analogWrite(GreenLED, 100);
+  
+  
   delay(1000);
 }
 
