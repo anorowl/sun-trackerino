@@ -74,4 +74,30 @@ describe('Param constraint middleware', () => {
             fn(req, res, next);
         });
     });
+
+    describe('Check params int', () => {
+        it('should validate when all parameters are ints', (done) => {
+            const req = { query : { test: 105, test2: 1000000000000 }};
+            const { res, next } = httpMockPass(done);
+
+            const fn = ParamConstraint.checkParamsInt('test', 'test2');
+            fn(req, res, next);
+        });
+
+        it('should not validate if one of the params is not an int', (done) => {
+            const req = { query: { test: 0, test2: 'test' }};
+            const { res, next } = httpMockFail(done);
+
+            const fn = ParamConstraint.checkParamsInt('test', 'test2');
+            fn(req, res, next);
+        });
+
+        it('should not validate if a parameter is missing', (done) => { 
+            const req = { query: { }};
+            const { res, next } = httpMockFail(done);
+
+            const fn = ParamConstraint.checkParamsInt('test');
+            fn(req, res, next);
+        });
+    });
 });
