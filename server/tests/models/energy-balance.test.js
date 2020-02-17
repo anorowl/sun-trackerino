@@ -25,21 +25,21 @@ describe('Energy balance schema', () => {
 
     // testing the power consuption field
     describe('Power consuption validation', () => {
-        it('should not validate with an empty power consuption', () => {
+        it('should not validate with an empty power consumption', () => {
             const eb = new EnergyBalance();
-            eb.consuption = null;
+            eb.consumption = null;
 
             const error = eb.validateSync();
-            assert.equal(error.errors['consuption'].message, "The power consuption is mandatory");
-            assert.equal(error.errors['consuption'].name,    "ValidatorError");
+            assert.equal(error.errors['consumption'].message, "The power consumption is mandatory");
+            assert.equal(error.errors['consumption'].name,    "ValidatorError");
         });
 
-        it('should validate with an existing power consuption', () => {
+        it('should validate with an existing power consumption', () => {
             const eb = new EnergyBalance();
-            eb.consuption = 500;
+            eb.consumption = 500;
 
             const error = eb.validateSync();
-            assert.equal(error.errors['consuption'], null); 
+            assert.equal(error.errors['consumption'], null); 
         });
     });
 
