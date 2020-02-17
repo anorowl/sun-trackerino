@@ -5,7 +5,7 @@ const EnergyBalanceSchema = new mongoose.Schema({
         type: Number,
         required: [true, 'The power production is mandatory'],
     },
-    consuption: {
+    consumption: {
         type: Number,
         required: [true, 'The power consuption is mandatory'],
     },
