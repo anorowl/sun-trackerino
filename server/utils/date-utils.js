@@ -38,7 +38,6 @@ function getDayEnding(date) {
 function getYearBeginning(year) {
     const ret = new Date(year, 0, 1);
 
-    console.log(ret);
     return ret;
 }
 
@@ -54,8 +53,6 @@ function getYearEnding(year) {
     ret.setMinutes(59);
     ret.setSeconds(59);
     
-    console.log(ret);
-
     return ret;
 }
 
