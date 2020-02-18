@@ -8,14 +8,17 @@ const app = express();
 // picks up the node env values if possible
 const APP_PORT = process.env.APP_PORT || 3000;
 const DB_PORT  = process.env.DB_PORT  || 27017;
-const DB_NAME  = process.env.DB_NAME  || 'sun-trackerino'; 
+const DB_NAME  = process.env.DB_NAME  || 'sun-trackerino';
+const HOST_NAME = process.argv[2]     || 'localhost';
 
+console.log(HOST_NAME)
 
 // mongoose connection
-mongoose.connect(`mongodb://localhost:${DB_PORT}/${DB_NAME}`, {
+mongoose.connect(`mongodb://${HOST_NAME}:${DB_PORT}/${DB_NAME}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
+.then(() => console.log("Mongo connected"))
 .catch(err => {
     console.error('Mongodb starting error:', err.stack);
     process.exit(1);
