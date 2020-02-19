@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "npx webpack --watch & node ./bin/www"
   },
   "dependencies": {
     "connected-react-router": "^6.6.1",
     "cookie-parser": "~1.4.4",
+    "d3": "^5.15.0",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "hbs": "^4.1.0",

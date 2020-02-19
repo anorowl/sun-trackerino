@@ -1,8 +1,49 @@
 body {
-  padding: 50px;
+  margin: 0;
+  padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+main {
+  width: 100vw;
+  position: relative;
+}
+
+header {
+  padding: 5px 15px;
+
+  background: royalblue;
+
+  display: flex;
+  align-items: center;
+}
+
+header > nav {
+  display: flex;
+
+  font-size: 1.5em;
+}
+
+nav (a, a:visited) {
+  color: #222;
+  text-decoration: none;
+}
+
+nav > a:not(:last-of-type) {
+  margin-right: 8px;
+}
+
+header > h1 {
+  margin-right: 25px;
+}
+
+footer {
+  padding: 5px 15px;
+  display: flex;
+  justify-content: space-between;
+  background: teal;
+}
+
+.time-series {
+  width: 600px;
 }
