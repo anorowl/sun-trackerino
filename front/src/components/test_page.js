@@ -1,5 +1,5 @@
-    import React from "react";
-    import Layout from "./layout";
+import React from "react";
+import Layout from "./layout";
 import TimeSeries from "./charts/time_series";
 
 export default class TestPage extends React.Component {

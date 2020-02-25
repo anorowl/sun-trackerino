@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "mocha tests/*",
+    "init": "node fill_with_random_data.js",
     "ci": "nyc npm test && nyc report --reporter=text-lcov"
   },
   "author": "Matteo AUGER",

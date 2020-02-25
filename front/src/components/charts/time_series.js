@@ -41,7 +41,7 @@ export default class TimeSeries extends React.Component {
             .select(ReactDOM.findDOMNode(this))
             .attr("viewBox", `0 0 ${this.props.width} ${this.props.height}`)
 
-        const data = randomData();
+        const data = this.props.data;
 
         const x = d3
             .scaleTime()

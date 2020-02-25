@@ -47,3 +47,14 @@ footer {
 .time-series {
   width: 600px;
 }
+
+.error {
+  color: white;
+  background: tomato;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.energy-balance > nav {
+  display: flex;
+}
