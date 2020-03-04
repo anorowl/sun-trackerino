@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
-import * as Actions from "../../actions/energyBalance";
+import * as Actions from "../actions/monthProduction";
 
 function data(state = [], action) {
     switch(action.type) {
-        case Actions.ENERGY_BALANCE_SUCCESS:
+        case Actions.MONTH_PRODUCTION_SUCCESS:
             return action.data;
         default:
             return state;
@@ -12,7 +12,7 @@ function data(state = [], action) {
 
 function loading(state = false, action) {
     switch(action.type) {
-        case Actions.ENERGY_BALANCE_LOADING:
+        case Actions.MONTH_PRODUCTION_LOADING:
             return action.loading;
         default:
             return state;
@@ -21,26 +21,17 @@ function loading(state = false, action) {
 
 function error(state = null, action) {
     switch(action.type) {
-        case Actions.ENERGY_BALANCE_ERROR:
+        case Actions.MONTH_PRODUCTION_ERROR:
             return action.error;
         default:
             return state;
     }
 }
 
-function start(state = "2020-01-01", action) {
+function year(state = 2020, action) {
     switch(action.type) {
-        case Actions.ENERGY_BALANCE_START:
-            return action.start;
-        default:
-            return state;
-    }
-}
-
-function end(state = "2020-03-01", action) {
-    switch(action.type) {
-        case Actions.ENERGY_BALANCE_END:
-            return action.end;
+        case Actions.MONTH_PRODUCTION_YEAR:
+            return action.year;
         default:
             return state;
     }
@@ -50,6 +41,5 @@ export default combineReducers({
     data,
     loading,
     error,
-    start,
-    end,
+    year,
 });

@@ -1,10 +1,10 @@
 import { connect } from "react-redux"
 import PropTypes from "prop-types";
-import TimeSeries from "../charts/time_series";
-import Layout from "../layout";
+import TimeSeries from "./charts/time_series";
+import Layout from "./layout";
 import React from "react";
 
-import * as actions from "../../actions/energyBalance";
+import * as actions from "../actions/energyBalance";
 
 class EnergyBalance extends React.Component {
     constructor(props) {

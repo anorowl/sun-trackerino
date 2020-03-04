@@ -13,7 +13,7 @@ import {
 import { Switch, Route } from 'react-router-dom';
 import { createBrowserHistory } from "history";
 
-import EnergyBalance from "./components/energyBalance";
+import MonthProduction from "./components/monthProduction";
 
 import reducers from "./reducers";
 
@@ -32,7 +32,7 @@ ReactDOM.render(
     <Provider store={store}>
         <ConnectedRouter history={history}>
             <Switch>
-                <Route path="/" component={EnergyBalance} />
+                <Route path="/" component={MonthProduction} />
                 <Route render={() => <h1>Not Found</h1>} />
             </Switch>
         </ConnectedRouter>
