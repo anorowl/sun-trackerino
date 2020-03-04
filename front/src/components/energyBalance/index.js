@@ -50,7 +50,7 @@ class EnergyBalance extends React.Component {
                 {
                     this.props.loading ?
                     <h2>Chargement...</h2>
-                    : <TimeSeries data={data} plots={plots} width={300} height={200} className="time-series" />
+                    : <TimeSeries data={data} plots={plots} areaPlots={[[0,1]]} width={300} height={200} className="time-series" />
                 }
                 {
                     this.props.error &&

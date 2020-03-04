@@ -63,3 +63,7 @@ footer {
 .energy-balance > nav {
   display: flex;
 }
+
+.plot-area {
+  fill: url("#area-gradient");
+}

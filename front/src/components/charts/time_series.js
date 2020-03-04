@@ -30,6 +30,7 @@ export default class TimeSeries extends React.Component {
             data,
             plots,
             strokeWidth = DEFAULT_STROKE_WIDTH,
+            areaPlots = [],
         } = this.props;
 
         const allValues = plots.reduce((arr, item) => [
@@ -91,10 +92,33 @@ export default class TimeSeries extends React.Component {
                 .datum(data)
                 .attr("fill", "none")
                 .attr("stroke", p.color)
-                .attr("stroke-width", strokeWidth)
+                .attr("stroke-width", 1)
                 .attr("stroke-linejoin", "round")
                 .attr("stroke-linecap", "round")
                 .attr("d", line);
+        });
+
+        areaPlots.forEach(([p1, p2]) => {
+            const firstPlot = plots[p1];
+            const secondPlot = plots[p2];
+
+            // Check if all indices are Ok
+            if(!firstPlot || !secondPlot)
+                return;
+
+            const area = d3
+                .area()
+                .curve(d3.curveBasis)
+                .x(d => x(d.date))
+                .y0(d => y(firstPlot.accessor(d)))
+                .y1(d => y(secondPlot.accessor(d)));
+
+            plotContainer
+                .append("path")
+                .datum(data)
+                .attr("fill", "url(#area-gradient)")
+                .attr("stroke-width", "none")
+                .attr("d", area);
         });
 
         plotContainer.append("g").call(xAxis);
@@ -112,6 +136,7 @@ TimeSeries.propTypes = {
     height: PropTypes.number.isRequired,
     data: PropTypes.array.isRequired,
     plots: PropTypes.array.isRequired,
+    areaPlots: PropTypes.array,
     strokeWidth: PropTypes.number,
     className: PropTypes.string,
 };
