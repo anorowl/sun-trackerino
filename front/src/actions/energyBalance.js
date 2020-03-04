@@ -48,7 +48,6 @@ export function fetchData(start, end) {
         return fetch(url, { method: "GET" })
             .then(res => res.json())
             .then(retrieved => {
-                debugger
                 dispatch(loading(false));
                 dispatch(success(retrieved));
             })

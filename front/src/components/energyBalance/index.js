@@ -1,9 +1,10 @@
 import { connect } from "react-redux"
 import PropTypes from "prop-types";
 import TimeSeries from "../charts/time_series";
+import Layout from "../layout";
 import React from "react";
 
-import * as actions from "../../actions/energyBalance"
+import * as actions from "../../actions/energyBalance";
 
 class EnergyBalance extends React.Component {
     constructor(props) {
@@ -15,39 +16,48 @@ class EnergyBalance extends React.Component {
     }
 
     render() {
-        const data = this
-            .props
-            .data
-            .map(({date, production: value}) => ({date, value}));
-
-        return <article className="energy-balance">
-            <nav>
-                <label htmlFor="start">Début</label>
-                <input
-                    type="date"
-                    name="start"
-                    value={this.props.start}
-                    onChange={e => this.props.setStart(e.target.value)} />
-                <label htmlFor="end">Fin</label>
-                <input
-                    type="date"
-                    name="end"
-                    value={this.props.end}
-                    onChange={e => this.props.setEnd(e.target.value)} />
-
-                <button onClick={() => this.props.fetchData(this.props.start, this.props.end)}>Charger</button>
-            </nav>
+        const plots = [
             {
-                this.props.loading ? 
-                <h2>Chargement...</h2>
-                : <TimeSeries data={data} width={300} height={200} className="time-series" />
-            }
+                accessor: d => d.production,
+                color: "forestgreen",
+            },
             {
-                this.props.error &&
-                <h2 className="error">{this.props.error}</h2>
+                accessor: d => d.consuption,
+                color: "orangered",
             }
-            
-        </article>
+        ];
+
+        const data = this.props.data.map(d => ({...d, date: new Date(d.date)}));
+
+        return <Layout>
+            <article className="energy-balance">
+                <nav>
+                    <label htmlFor="start">Début</label>
+                    <input
+                        type="date"
+                        name="start"
+                        value={this.props.start}
+                        onChange={e => this.props.setStart(e.target.value)} />
+                    <label htmlFor="end">Fin</label>
+                    <input
+                        type="date"
+                        name="end"
+                        value={this.props.end}
+                        onChange={e => this.props.setEnd(e.target.value)} />
+
+                    <button onClick={() => this.props.fetchData(this.props.start, this.props.end)}>Charger</button>
+                </nav>
+                {
+                    this.props.loading ?
+                    <h2>Chargement...</h2>
+                    : <TimeSeries data={data} plots={plots} width={300} height={200} className="time-series" />
+                }
+                {
+                    this.props.error &&
+                    <h2 className="error">{this.props.error}</h2>
+                }
+            </article>
+        </Layout>
     }
 }
 
