@@ -93,6 +93,9 @@ router.get('/year',
                         day: {
                             $dayOfMonth: "$date",
                         },
+                        year: {
+                            $year: "$date",
+                        }
                     },
                     count: {
                         $sum: "$production",

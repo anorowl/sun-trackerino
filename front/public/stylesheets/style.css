@@ -49,6 +49,11 @@ footer {
   min-width: 400px;
 }
 
+.heatmap {
+  width: 50%;
+  min-width: 400px;
+}
+
 .error {
   color: white;
   background: tomato;
@@ -64,6 +69,16 @@ footer {
   display: flex;
 }
 
+.weekdays-axis {
+  font-size: 5px;
+}
+
 .plot-area {
   fill: url("#area-gradient");
+}
+
+.dash {
+  background: darkslategray;
+  padding: 10px;
+  border-radius: 5px;
 }

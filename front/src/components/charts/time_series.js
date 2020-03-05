@@ -4,13 +4,14 @@ import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
 import * as d3 from "d3";
+import Margin from "../ui/margin";
 
-const MARGIN = {
+const MARGIN = new Margin({
     left: 33,
     top: 10,
     right: 0,
     bottom: 75,
-};
+});
 
 const DEFAULT_STROKE_WIDTH = 1;
 

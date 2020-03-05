@@ -4,7 +4,8 @@ import Layout from "./layout";
 import React from "react";
 
 import * as actions from "../actions/monthProduction";
-import MonthSelect from "../actions/ui/monthselect";
+import MonthSelect from "./ui/monthselect";
+import Heatmap from "./charts/heatmap";
 
 class MonthProduction extends React.Component {
     constructor(props) {
@@ -19,26 +20,15 @@ class MonthProduction extends React.Component {
         const {
             year,
             month,
-            setYear,
-            fetchData,
             loading,
             error,
             data,
+            setYear,
+            setMonth,
+            fetchData,
         } = this.props;
 
-        const dataPerMonth = data.reduce((acc, d) => {
-            const month = d._id.month - 1;
-
-            return {
-                ...acc,
-                [month]: [
-                    ...acc[month] || [],
-                    d,
-                ],
-            };
-        }, {});
-
-        const monthData = dataPerMonth[month] || [];
+        const monthData = data.filter(d => (d._id.month - 1) === month);
 
         return <Layout>
             <article className="energy-balance">
@@ -58,7 +48,7 @@ class MonthProduction extends React.Component {
                 {
                     loading ?
                     <h2>Chargement...</h2>
-                    : <h2>Données pour: {month}</h2>
+                    : <Heatmap cold="transparent" hot="orangered" width={220} height={140} data={monthData} className="heatmap"/>
                 }
                 {
                     error &&
