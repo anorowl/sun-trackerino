@@ -173,12 +173,8 @@ void loop() {
       getValue(tl, tr, bl, br);
     }
   
-    // - - - - - - - - - - - -
-    Serial.println("TL: " + (String) tl + "| TR: " + (String) tr);
-    Serial.println("BL: " + (String) bl + "| BR: " + (String) br);
-    int avg = (int) (tl + tr + br + bl) / 4;
-    //Serial.println("- - - - - - - - - - - - - - - - - - - - - - ");
-    Serial.println( ">>>> " + (String)avg + "%");
+    float avg = (tl + tr + br + bl) / 4;  
+    Serial.println((String)avg);
   
     
     // - - - - - - - - - - - -
