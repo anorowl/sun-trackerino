@@ -16,6 +16,19 @@ const checkParamsDate = (...keys) => {
     return checkParams(keys, '__key__ should be a date', predicate);
 };
 
+/*
+ * Middleware checking if the given params are of integer type.
+ * @param {Array} keys Array of param names.
+ */
+const checkParamsInt = (...keys) => {
+    const predicate = val => {
+        const parsedVal = parseInt(val);
+        return !isNaN(parsedVal) && Number.isInteger(parsedVal); 
+    };
+    
+    return checkParams(keys, '__key__ should be an integer', predicate); 
+}
+
 /**
  * Checks the given params with the given predicate.
  * If a param doesn't respect the predicate, the middleware will send a
@@ -52,4 +65,5 @@ function checkParams(keys, errorMsgTemplate, predicate) {
 module.exports = {
     requiredGetParams,
     checkParamsDate,
+    checkParamsInt
 }

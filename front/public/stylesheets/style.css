@@ -1,8 +1,104 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  font: 14px Lato;
+  /* background: rgb(48, 41, 94); */
+  background: #231b42;
 }
 
-a {
-  color: #00B7FF;
+.time-series {
+  width: 100%;
+  min-width: 400px;
+}
+
+.heatmap {
+  width: 100%;
+  min-width: 400px;
+}
+
+.error {
+  color: white;
+  background: tomato;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.energy-balance {
+  padding: 3em;
+}
+
+.energy-balance > nav {
+  display: flex;
+}
+
+.weekdays-axis {
+  font-size: 5px;
+}
+
+.plot-area {
+  fill: url("#area-gradient");
+}
+
+.dash {
+  background: #432e64;
+  padding: 4em;
+  border-radius: 10px;
+  border: solid 2px #ffad33;
+  box-shadow: 0 0 10px 4px #ffad33a4;
+}
+
+.dashboard {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 2em 1em;
+}
+
+main > header {
+  text-align: center;
+  font-size: 5em;
+  color: white;
+  font-weight: 700;
+  text-shadow: 0 0 20px fuchsia;
+}
+
+.dashboard > .dash {
+  width: 40%;
+}
+
+.dash > nav {
+  background: #222;
+  padding: 1.3em;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  overflow-x: auto;
+  margin-bottom: 1em;
+}
+
+.dash > header {
+  font-size: 2em;
+  margin-bottom: 1em;
+  color: #ffad33;
+  font-weight: 700;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  margin-right: 1.2em;
+}
+
+.control > label {
+  margin-right: 1em;
+}
+
+label {
+  font-size: 1.3em;
+}
+
+text {
+  color: white;
+  font-family: Lato;
 }

@@ -6,11 +6,13 @@
   "scripts": {
     "start": "node index.js",
     "test": "mocha tests/*",
+    "init": "node fill_with_random_data.js",
     "ci": "nyc npm test && nyc report --reporter=text-lcov"
   },
   "author": "Matteo AUGER",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^5.8.7"
   },

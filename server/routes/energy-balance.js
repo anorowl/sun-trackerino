@@ -53,4 +53,59 @@ router.get('/dateinterval',
     })
 );
 
+/*
+ * Gets the year report
+ * -> Production for each day of the year
+ */
+router.get('/year', 
+    ParamConstraint.requiredGetParams('year'),
+    ParamConstraint.checkParamsInt('year'),
+    wrap(async(req, res) => {
+        const year = req.query.year;
+        const currentYear = new Date().getFullYear();
+
+        if (year <= 0 || year > currentYear) {          
+            res.status(400)
+               .send(`The year should be more than 0 and less than ${currentYear}`);
+        }
+
+        // TODO select sum(production) between begin date and end date
+        // GROUP BY  
+        //db.energybalances.aggregate([{ $group: { _id: { month: {$month: "$date"}, day: {$dayOfMonth: "$date"}}, count: { $sum: "$production" } } } ])
+        const beginDate = DateUtils.getYearBeginning(year);
+        const endDate   = DateUtils.getYearEnding(year); 
+     
+        const result = await EnergyBalance.aggregate([
+            {
+                $match: { 
+                    date: {
+                        $gte: beginDate,
+                        $lte: endDate,
+                    },
+                },
+            },
+            {
+                $group: {
+                    _id: {
+                        month: {
+                            $month: "$date",
+                        },
+                        day: {
+                            $dayOfMonth: "$date",
+                        },
+                        year: {
+                            $year: "$date",
+                        }
+                    },
+                    count: {
+                        $sum: "$production",
+                    },
+                },
+            }, 
+        ]);  
+        
+        res.json(result);
+    })
+);
+
 module.exports = router;

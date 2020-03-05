@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const express  = require('express');
 const EnergyBalanceRouter = require('./routes/energy-balance');
+const cors = require("cors");
 
 const app = express();
 
@@ -22,6 +23,7 @@ mongoose.connect(`mongodb://localhost:${DB_PORT}/${DB_NAME}`, {
 });
 
 const db = mongoose.connection;
+app.use(cors({origin: "http://localhost"}));
 
 app.use('/energy-balance', EnergyBalanceRouter);
 app.listen(APP_PORT, () => console.log(`Listening on port ${APP_PORT}`));
