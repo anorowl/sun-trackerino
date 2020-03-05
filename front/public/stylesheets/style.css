@@ -43,7 +43,8 @@ body {
   background: #432e64;
   padding: 4em;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px #222;
+  border: solid 2px #ffad33;
+  box-shadow: 0 0 10px 4px #ffad33a4;
 }
 
 .dashboard {
@@ -51,6 +52,14 @@ body {
   justify-content: space-around;
   flex-wrap: wrap;
   padding: 2em 1em;
+}
+
+main > header {
+  text-align: center;
+  font-size: 5em;
+  color: white;
+  font-weight: 700;
+  text-shadow: 0 0 20px fuchsia;
 }
 
 .dashboard > .dash {
@@ -71,7 +80,7 @@ body {
 .dash > header {
   font-size: 2em;
   margin-bottom: 1em;
-  color: white;
+  color: #ffad33;
   font-weight: 700;
 }
 
