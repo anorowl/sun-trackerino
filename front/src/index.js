@@ -13,10 +13,8 @@ import {
 import { Switch, Route } from 'react-router-dom';
 import { createBrowserHistory } from "history";
 
-import MonthProduction from "./components/monthProduction";
-import EnergyBalance from "./components/energyBalance";
-
 import reducers from "./reducers";
+import Dashboard from "./components/dashboard";
 
 const history = createBrowserHistory();
 
@@ -33,7 +31,7 @@ ReactDOM.render(
     <Provider store={store}>
         <ConnectedRouter history={history}>
             <Switch>
-                <Route path="/" component={MonthProduction} />
+                <Route path="/" component={Dashboard} />
                 <Route render={() => <h1>Not Found</h1>} />
             </Switch>
         </ConnectedRouter>

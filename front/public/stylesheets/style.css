@@ -1,56 +1,18 @@
 body {
   margin: 0;
   padding: 0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-main {
-  width: 100%;
-  position: relative;
-}
-
-header {
-  padding: 5px 15px;
-
-  background: royalblue;
-
-  display: flex;
-  align-items: center;
-}
-
-header > nav {
-  display: flex;
-
-  font-size: 1.5em;
-}
-
-a, a:visited {
-  color: #222;
-  text-decoration: none;
-}
-
-nav > a:not(:last-of-type) {
-  margin-right: 8px;
-}
-
-header > h1 {
-  margin-right: 25px;
-}
-
-footer {
-  padding: 5px 15px;
-  display: flex;
-  justify-content: space-between;
-  background: teal;
+  font: 14px Lato;
+  /* background: rgb(48, 41, 94); */
+  background: #231b42;
 }
 
 .time-series {
-  width: 60%;
+  width: 100%;
   min-width: 400px;
 }
 
 .heatmap {
-  width: 50%;
+  width: 100%;
   min-width: 400px;
 }
 
@@ -78,7 +40,56 @@ footer {
 }
 
 .dash {
-  background: darkslategray;
-  padding: 10px;
+  background: #432e64;
+  padding: 4em;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px #222;
+}
+
+.dashboard {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 2em 1em;
+}
+
+.dashboard > .dash {
+  width: 40%;
+}
+
+.dash > nav {
+  background: #222;
+  padding: 1.3em;
   border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  overflow-x: auto;
+  margin-bottom: 1em;
+}
+
+.dash > header {
+  font-size: 2em;
+  margin-bottom: 1em;
+  color: white;
+  font-weight: 700;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  margin-right: 1.2em;
+}
+
+.control > label {
+  margin-right: 1em;
+}
+
+label {
+  font-size: 1.3em;
+}
+
+text {
+  color: white;
+  font-family: Lato;
 }

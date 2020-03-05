@@ -7,6 +7,11 @@ import * as actions from "../actions/monthProduction";
 import MonthSelect from "./ui/monthselect";
 import Heatmap from "./charts/heatmap";
 
+const monthFormat = Intl.DateTimeFormat("fr", {
+    month: "long",
+    year: "numeric",
+})
+
 class MonthProduction extends React.Component {
     constructor(props) {
         super(props);
@@ -30,32 +35,37 @@ class MonthProduction extends React.Component {
 
         const monthData = data.filter(d => (d._id.month - 1) === month);
 
-        return <Layout>
-            <article className="energy-balance">
-                <nav>
+        return <article className="dash energy-balance">
+            <header>
+                Graphe de production sur {monthFormat.format(new Date(year, month))}
+            </header>
+            <nav>
+                <div className="control">
                     <label htmlFor="year">Année</label>
                     <input
                         type="number"
                         name="year"
                         value={year}
                         onChange={e => setYear(parseInt(e.target.value))} />
+                </div>
 
+                <button style={{marginRight: "1.5em"}} onClick={() => fetchData(year)}>Charger</button>
+
+                <div className="control">
                     <label htmlFor="month">Mois</label>
                     <MonthSelect value={month} onChange={m => setMonth(m)} />
-
-                    <button onClick={() => fetchData(year)}>Charger</button>
-                </nav>
-                {
-                    loading ?
-                    <h2>Chargement...</h2>
-                    : <Heatmap cold="transparent" hot="orangered" width={220} height={140} data={monthData} className="heatmap"/>
-                }
-                {
-                    error &&
-                    <h2 className="error">{error}</h2>
-                }
-            </article>
-        </Layout>
+                </div>
+            </nav>
+            {
+                loading ?
+                <h2>Chargement...</h2>
+                : <Heatmap cold="white" hot="#ffad33" width={220} height={140} data={monthData} className="heatmap"/>
+            }
+            {
+                error &&
+                <h2 className="error">{error}</h2>
+            }
+        </article>;
     }
 }
 

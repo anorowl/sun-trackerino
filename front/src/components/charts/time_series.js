@@ -52,7 +52,7 @@ export default class TimeSeries extends React.Component {
         const x = d3
             .scaleUtc()
             .domain(d3.extent(data, d => d.date))
-            .range([0, width - MARGIN.left]);
+            .range([1, width - MARGIN.left]);
 
         let y = d3
             .scaleLinear()
@@ -93,7 +93,7 @@ export default class TimeSeries extends React.Component {
                 .datum(data)
                 .attr("fill", "none")
                 .attr("stroke", p.color)
-                .attr("stroke-width", 1)
+                .attr("stroke-width", strokeWidth)
                 .attr("stroke-linejoin", "round")
                 .attr("stroke-linecap", "round")
                 .attr("d", line);

@@ -19,45 +19,50 @@ class EnergyBalance extends React.Component {
         const plots = [
             {
                 accessor: d => d.production,
-                color: "forestgreen",
+                color: "#ffad33",
             },
             {
                 accessor: d => d.consuption,
-                color: "orangered",
+                color: "fuchsia",
             }
         ];
 
         const data = this.props.data.map(d => ({...d, date: new Date(d.date)}));
 
-        return <Layout>
-            <article className="energy-balance">
-                <nav>
+        return <article className="dash energy-balance">
+            <header>
+                Production et Consommation
+            </header>
+            <nav>
+                <div className="control">
                     <label htmlFor="start">Début</label>
                     <input
                         type="date"
                         name="start"
                         value={this.props.start}
                         onChange={e => this.props.setStart(e.target.value)} />
+                </div>
+                <div className="control">
                     <label htmlFor="end">Fin</label>
                     <input
                         type="date"
                         name="end"
                         value={this.props.end}
                         onChange={e => this.props.setEnd(e.target.value)} />
+                </div>
 
-                    <button onClick={() => this.props.fetchData(this.props.start, this.props.end)}>Charger</button>
-                </nav>
-                {
-                    this.props.loading ?
-                    <h2>Chargement...</h2>
-                    : <TimeSeries data={data} plots={plots} areaPlots={[[0,1]]} width={300} height={200} className="time-series" />
-                }
-                {
-                    this.props.error &&
-                    <h2 className="error">{this.props.error}</h2>
-                }
-            </article>
-        </Layout>
+                <button onClick={() => this.props.fetchData(this.props.start, this.props.end)}>Charger</button>
+            </nav>
+            {
+                this.props.loading ?
+                <h2>Chargement...</h2>
+                : <TimeSeries data={data} plots={plots} areaPlots={[[0,1]]} width={300} height={200} strokeWidth={1.3} className="time-series" />
+            }
+            {
+                this.props.error &&
+                <h2 className="error">{this.props.error}</h2>
+            }
+        </article>;
     }
 }
 
