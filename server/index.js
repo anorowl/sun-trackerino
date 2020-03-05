@@ -44,9 +44,7 @@ const serial = new SerialPort(SERIAL_PORT, { baudRate: 9600 }, (err) => {
 
 const parser = serial.pipe(new ReadLine({delimiter: '\n', includeDelimiter: false, encoding: "ascii"}))
 parser.on("data", chunk => {
-    console.log(chunk);
     const value = consumptionUtils.rawChunkToProductionValue(chunk);
-    console.log(`Parsé : ${value}`);
 
     if(value)
         productionValues.push(value);
@@ -61,10 +59,8 @@ async function run() {
     while(1) {
         await wait(TIME_INTERVAL);
         
-        if(productionValues.length != 0) {   
-            console.log(productionValues);
+        if(productionValues.length != 0) {
             const production = productionValues.reduce((prev, curr) => prev + curr, 0);
-            console.log(production);
 
             const consumption = consumptionUtils.getRandomHardwareEnergyConsumption();
             const newEnergyBalance = {
