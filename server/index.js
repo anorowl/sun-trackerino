@@ -37,18 +37,44 @@ app.listen(APP_PORT, () => console.log(`Listening on port ${APP_PORT}`));
 const serial = new SerialPort(SERIAL_PORT, { baudRate: 9600 }, (err) => {
     console.error(`Can't connect to ${SERIAL_PORT} ==> ${err.message}`);
 });
+
+
 const parser = serial.pipe(new ReadLine())
 parser.on("data", chunk => {
-    const consumption = consumptionUtils.getRandomHardwareEnergyConsumption();
-    const newEnergyBalance = {
-        production: chunk,
-        consumption: consumption,
-        ratio: chunk / consumption
-    };
-    
-    const model = new EnergyBalanceModel(newEnergyBalance);
+    let value = consumptionUtils.rawChunkToProductionValue(chunk);
 
-    model.save().catch(err => {
-        console.error("Error on energy balance save");
-    })
-})
+    if(value)
+        productionValues.push(value);
+});
+
+const productionValues = []; // array of values received from the Arduino
+const TIME_INTERVAL = 60000; // in ms
+
+async function run() {
+    await wait(TIME_INTERVAL);
+    
+    if(productionValues.length != 0) {   
+        const production = productionValues.reduce((prev, curr) => prev + curr, 0) / productionValues.length;
+
+        const consumption = consumptionUtils.getRandomHardwareEnergyConsumption();
+        const newEnergyBalance = {
+            production: production,
+            consumption: consumption,
+            ratio: chunk / consumption
+        };
+
+        const model = new EnergyBalanceModel(newEnergyBalance);
+
+        model.save().catch(err => {
+            console.error("Error on energy balance save");
+        });
+    }
+}
+
+function wait(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
+}
+
+while(1) {
+    run();
+}
