@@ -23,6 +23,8 @@ function error(state = null, action) {
     switch(action.type) {
         case Actions.ENERGY_BALANCE_ERROR:
             return action.error;
+        case Actions.ENERGY_BALANCE_SUCCESS:
+            return null;
         default:
             return state;
     }

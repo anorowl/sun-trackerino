@@ -14,6 +14,7 @@ import { Switch, Route } from 'react-router-dom';
 import { createBrowserHistory } from "history";
 
 import MonthProduction from "./components/monthProduction";
+import EnergyBalance from "./components/energyBalance";
 
 import reducers from "./reducers";
 

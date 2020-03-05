@@ -1,6 +1,7 @@
 export const MONTH_PRODUCTION_LOADING = "MONTH_PRODUCTION_LOADING";
 export const MONTH_PRODUCTION_SUCCESS = "MONTH_PRODUCTION_SUCCESS";
 export const MONTH_PRODUCTION_YEAR = "MONTH_PRODUCTION_SET_YEAR";
+export const MONTH_PRODUCTION_MONTH = "MONTH_PRODUCTION_SET_MONTH"
 export const MONTH_PRODUCTION_ERROR = "MONTH_PRODUCTION_ERROR";
 
 export function loading(loading) {
@@ -29,6 +30,13 @@ export function year(year) {
         type: MONTH_PRODUCTION_YEAR,
         year,
     };
+}
+
+export function month(month) {
+    return {
+        type: MONTH_PRODUCTION_MONTH,
+        month,
+    }
 }
 
 export function fetchData(year) {

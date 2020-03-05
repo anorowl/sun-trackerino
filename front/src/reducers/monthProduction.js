@@ -23,6 +23,8 @@ function error(state = null, action) {
     switch(action.type) {
         case Actions.MONTH_PRODUCTION_ERROR:
             return action.error;
+        case Actions.MONTH_PRODUCTION_SUCCESS:
+            return null;
         default:
             return state;
     }
@@ -37,9 +39,19 @@ function year(state = 2020, action) {
     }
 }
 
+function month(state = 0, action) {
+    switch(action.type) {
+        case Actions.MONTH_PRODUCTION_MONTH:
+            return action.month;
+        default:
+            return state;
+    }
+}
+
 export default combineReducers({
     data,
     loading,
     error,
     year,
+    month,
 });
