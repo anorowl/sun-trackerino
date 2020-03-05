@@ -1,4 +1,6 @@
 const consumptionUtils =  require("./utils/consumption-utils");
+function clear() {this.length = 0};
+Array.prototype.clear = clear;
 
 const mongoose = require('mongoose');
 const express  = require('express');
@@ -35,39 +37,50 @@ app.use('/energy-balance', EnergyBalanceRouter);
 app.listen(APP_PORT, () => console.log(`Listening on port ${APP_PORT}`));
 
 const serial = new SerialPort(SERIAL_PORT, { baudRate: 9600 }, (err) => {
-    console.error(`Can't connect to ${SERIAL_PORT} ==> ${err.message}`);
+    if(err)
+        console.error(`Can't connect to ${SERIAL_PORT} ==> ${err}`);
 });
 
 
-const parser = serial.pipe(new ReadLine())
+const parser = serial.pipe(new ReadLine({delimiter: '\n', includeDelimiter: false, encoding: "ascii"}))
 parser.on("data", chunk => {
-    let value = consumptionUtils.rawChunkToProductionValue(chunk);
+    console.log(chunk);
+    const value = consumptionUtils.rawChunkToProductionValue(chunk);
+    console.log(`Parsé : ${value}`);
 
     if(value)
         productionValues.push(value);
+}).on("error", err => {
+    console.error(`Erreur survenue => ${err}`);
 });
 
 const productionValues = []; // array of values received from the Arduino
 const TIME_INTERVAL = 60000; // in ms
 
 async function run() {
-    await wait(TIME_INTERVAL);
-    
-    if(productionValues.length != 0) {   
-        const production = productionValues.reduce((prev, curr) => prev + curr, 0) / productionValues.length;
+    while(1) {
+        await wait(TIME_INTERVAL);
+        
+        if(productionValues.length != 0) {   
+            console.log(productionValues);
+            const production = productionValues.reduce((prev, curr) => prev + curr, 0);
+            console.log(production);
 
-        const consumption = consumptionUtils.getRandomHardwareEnergyConsumption();
-        const newEnergyBalance = {
-            production: production,
-            consumption: consumption,
-            ratio: chunk / consumption
-        };
+            const consumption = consumptionUtils.getRandomHardwareEnergyConsumption();
+            const newEnergyBalance = {
+                production,
+                consumption,
+                ratio: production / consumption
+            };
 
-        const model = new EnergyBalanceModel(newEnergyBalance);
+            const model = new EnergyBalanceModel(newEnergyBalance);
 
-        model.save().catch(err => {
-            console.error("Error on energy balance save");
-        });
+            model.save().catch(err => {
+                console.error(err);
+            });
+
+            productionValues.clear();
+        }
     }
 }
 
@@ -75,6 +88,4 @@ function wait(time) {
     return new Promise(resolve => setTimeout(resolve, time));
 }
 
-while(1) {
-    run();
-}
+run().catch(err => console.error(err));

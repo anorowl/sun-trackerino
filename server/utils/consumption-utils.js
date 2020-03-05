@@ -6,10 +6,11 @@ function getRandomHardwareEnergyConsumption() {
     return 100 + Math.random() * 500;
 }
 
-const FLOAT_REGEX = new RegExp(/\d+\.\d+/);
+const FLOAT_REGEX = new RegExp(/^\s*\d+\.\d+\s*$/);
 
 function rawChunkToProductionValue(val) {
-    return FLOAT_REGEX.test(val) ? parseFloat(val) : null;
+    const randomProductionRatio = 1 + Math.random() * 4;
+    return FLOAT_REGEX.test(val) ? (parseFloat(val) * randomProductionRatio) : null;
 }
 
 module.exports = {
