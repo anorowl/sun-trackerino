@@ -15,17 +15,18 @@ const toInsert = [];
 
 let date = new Date(2019, 12, 1);
 
-for(let i=0; i<90; i++) {
+for(let i=0; i<365; i++) {
     const production = 40 + Math.random() * 51;
-    const consuption = 3.5 + Math.random() * 3;
-    const ratio = production / consuption;
+    const consumption = 3.5 + Math.random() * 3;
+    const ratio = production / consumption;
     toInsert.push({
         production,
-        consuption,
+        consumption,
         ratio,
         date,
     });
     
+    console.log(`\r${i}/365`);
     date = new Date(date.valueOf() + 1000 * 3600 * 24); // 1 day later
 }
 
