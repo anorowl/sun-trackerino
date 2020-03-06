@@ -15,7 +15,7 @@ give the balance between the consumed and the produced energy in real time.
 
 The device is built with an [Arduino Uno](https://store.arduino.cc/arduino-uno-rev3).
 
-![Device schema](https://github.com/matteoauger/sun-trackerino/device/resources/circuit.png "Device schema")
+![Device schema](https://github.com/matteoauger/sun-trackerino/device/sun-trackerino/resources/circuit.png "Device schema")
 
 ### Server
 
