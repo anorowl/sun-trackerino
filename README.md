@@ -15,6 +15,8 @@ give the balance between the consumed and the produced energy in real time.
 
 The device is built with an [Arduino Uno](https://store.arduino.cc/arduino-uno-rev3).
 
+![Device schema](device/resources/circuit.png "Device schema")
+
 ### Server
 
 The server collects the data from the devices via a websocket connection. An API allows to get the history of power consuption/production as well as the in real time values. 
