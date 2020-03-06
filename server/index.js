@@ -48,6 +48,7 @@ const parser = serial.pipe(new ReadLine({delimiter: '\n', includeDelimiter: fals
 parser.on("data", chunk => {
     const value = consumptionUtils.rawChunkToProductionValue(chunk);
 
+    //console.log(value);
     if(value)
         productionValues.push(value);
 }).on("error", err => {
@@ -56,15 +57,16 @@ parser.on("data", chunk => {
 
 const productionValues = []; // array of values received from the Arduino
 const TIME_INTERVAL = 60000; // in ms
+const ratio = () => 150 / productionValues.length;
 
 async function run() {
     while(1) {
         await wait(TIME_INTERVAL);
         
         if(productionValues.length != 0) {
-            const production = productionValues.reduce((prev, curr) => prev + curr, 0);
-
+            const production = productionValues.reduce((prev, curr) => prev + curr, 0) * ratio();
             const consumption = consumptionUtils.getRandomHardwareEnergyConsumption();
+
             const newEnergyBalance = {
                 production,
                 consumption,

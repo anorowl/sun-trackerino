@@ -22,7 +22,7 @@ class EnergyBalance extends React.Component {
                 color: "#ffad33",
             },
             {
-                accessor: d => d.consuption,
+                accessor: d => d.consumption,
                 color: "fuchsia",
             }
         ];
